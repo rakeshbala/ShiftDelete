@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	set itemSize to count of input	if itemSize is not equal to 0 then		set promptstr to ("Permanently delete " &amp; itemSize &amp; " items?")		set prompt to display dialog promptstr buttons {"Yes", "No"} default button 2		set answer to button returned of prompt		if answer is equal to "Yes" then			repeat with finderItem in input				set pathStr to POSIX path of finderItem				do shell script "rm -rf " &amp; pathStr			end repeat		end if	end ifend run</string>
+					<string>on run {input, parameters}	try		set itemSize to count of input		if itemSize is not equal to 0 then			set promptstr to ("Permanently delete " &amp; itemSize &amp; " items?")			set prompt to display dialog promptstr buttons {"Yes", "No"} default button 2			set answer to button returned of prompt			if answer is equal to "Yes" then				repeat with finderItem in input					set pathStr to POSIX path of finderItem					do shell script "rm -rf '" &amp; pathStr &amp;"'"				end repeat			end if		end if	on error errStr number errorNumber		display alert errStr 	end tryend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -105,7 +105,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>649.000000:316.000000</string>
+				<string>309.000000:569.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
